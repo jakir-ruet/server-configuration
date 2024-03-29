@@ -10,6 +10,34 @@
 To follow this tutorial, you will need:
 1. For this learning we need to know the operation of applications, how to run/work on OS as well as firewall basic.
 
+[JDK Install](https://jdk.java.net)
+
+[Tomcat Install](https://jdk.java.net)
+- cd /opt
+
+```bash
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.20/bin/apache-tomcat-10.1.20.tar.gz
+tar zxvf apache-tomcat-10.1.20.tar.gz
+mv apache-tomcat-10.1.20 tomcat
+find / -name context.xml
+nano /opt/tomcat/webapps/manager/META-INF/context.xml # comment in '<!-- <Valve/> -->'
+nano /opt/tomcat/conf/tomcat-users.xml # put the below code
+```
+
+```bash
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+<user username="tomcat" password="tomcat" roles="manager-gui"/>
+ ```
+
+ ```bash
+./shutdown.sh 
+./startup.sh
+```
 
 ## Courtesy of Jakir
 
